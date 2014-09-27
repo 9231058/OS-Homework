@@ -1,0 +1,1 @@
+using gcc -o 2 2.c -lrt for compiling 2 !!![see mq_send() man page for details] 
