@@ -7,7 +7,12 @@ void die(const char* msg);
 int main(int argc, char* argv[]){
 	int fds[2];
 	pid_t child;
-	
+
+	const char* path = "/";
+	if(argc > 1){
+		path = argv[1];
+	}
+
 	if(pipe(fds) == -1){
 		die("pipe()");
 	}
@@ -27,7 +32,7 @@ int main(int argc, char* argv[]){
 		
 			fprintf(stderr, "INFO: [child] ls is going to exec\n");
 
-			if(execlp("ls", "ls", "-la", "/", NULL) == -1){
+			if(execlp("ls", "ls", "-la", path, NULL) == -1){
 				die("execlp()");
 			}
 	}else{
