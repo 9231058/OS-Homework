@@ -1,1 +1,3 @@
-using gcc -o 2 2.c -lrt for compiling 2 !!![see mq_send() man page for details] 
+using gcc -o 2 2.c -lrt for compiling 2 !!![see mq_send() man page for details]
+message queue and shared memory need posix realtime extension library link with -lrt
+using man rtlib for details
