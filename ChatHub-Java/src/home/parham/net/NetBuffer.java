@@ -1,105 +1,116 @@
 package home.parham.net;
 
-import java.net.DatagramPacket;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by parham on 10/3/14.
  */
-public class NetBuffer implements Queue<DatagramPacket> {
+public class NetBuffer implements Queue<Message> {
 
-    private ArrayList<DatagramPacket> packets;
+    private ArrayList<Message> messages;
+
+    public NetBuffer(){
+        messages = new ArrayList<Message>();
+    }
+
 
     @Override
     public int size() {
-        return packets.size();
+        return messages.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return packets.isEmpty();
+        return messages.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        return packets.contains(o);
+        return messages.contains(o);
     }
 
     @Override
-    public Iterator<DatagramPacket> iterator() {
-        return packets.iterator();
+    public Iterator<Message> iterator() {
+        return messages.iterator();
     }
 
     @Override
     public Object[] toArray() {
-        return packets.toArray();
+        return messages.toArray();
     }
 
     @Override
     public <T> T[] toArray(T[] ts) {
-        return packets.toArray(ts);
+        return messages.toArray(ts);
     }
 
     @Override
-    public boolean add(DatagramPacket datagramPacket) {
-        return packets.add(datagramPacket);
+    public boolean add(Message message) {
+        return messages.add(message);
     }
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        return messages.remove(o);
     }
 
     @Override
     public boolean containsAll(Collection<?> objects) {
-        return false;
+        return messages.contains(objects);
     }
 
     @Override
-    public boolean addAll(Collection<? extends DatagramPacket> datagramPackets) {
-        return packets.addAll(datagramPackets);
+    public boolean addAll(Collection<? extends Message> messages) {
+        return this.messages.addAll(messages);
     }
 
     @Override
     public boolean removeAll(Collection<?> objects) {
-        return packets.removeAll(objects);
+        return messages.removeAll(objects);
     }
 
     @Override
     public boolean retainAll(Collection<?> objects) {
-        return packets.retainAll(objects);
+        return retainAll(objects);
     }
 
     @Override
     public void clear() {
-        packets.clear();
+        messages.clear();
     }
 
     @Override
-    public boolean offer(DatagramPacket datagramPacket) {
-        return false;
+    public boolean offer(Message message) {
+        return messages.add(message);
     }
 
     @Override
-    public DatagramPacket remove() {
-        return packets.remove(0);
+    public Message remove() {
+        return messages.remove(0);
     }
 
     @Override
-    public DatagramPacket poll() {
-        return null;
+    public Message poll() {
+        if(messages.size() >= 1){
+            return messages.remove(0);
+        }else{
+            return null;
+        }
     }
 
     @Override
-    public DatagramPacket element() {
-        return null;
+    public Message element() {
+         Message message = messages.get(0);
+        if(message == null) {
+            throw new NoSuchElementException();
+        }else{
+            return message;
+        }
+
     }
 
     @Override
-    public DatagramPacket peek() {
-        return null;
+    public Message peek() {
+        return messages.get(0);
     }
 }

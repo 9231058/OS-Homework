@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Application-Name: ChatHub-Java
+Main-Class: home.parham.main.Main
+Application-Version: 1.0.0
+
+
