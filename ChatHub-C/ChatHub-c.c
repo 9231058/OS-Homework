@@ -71,6 +71,8 @@ int main(int argc, char* argv[]){
 			
 			if(buffer[0] == '/'){
 				command_handler(buffer);
+			}else if(buffer[0] == 10){
+				continue;	
 			}else{
 				if(sendto(sockfd, buffer, strlen(buffer), 0, (struct sockaddr*)&client_addr, sizeof(client_addr)) != strlen(buffer)){
 					die("sendto()");
