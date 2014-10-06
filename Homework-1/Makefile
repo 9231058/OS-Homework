@@ -16,7 +16,7 @@ all:
 	${GCC} -o 2 2.o ${LINUX_LIBRT}
 tar:
 	${RM} *.tar.gz
-	${TAR} cvfz os_assigment${HW_NO}_group20.tar.gz *.c *.help *.txt Makefile
+	${TAR} cvfz os_assigment${HW_NO}_group20.tgz *.c *.help *.txt Makefile
 clean:
 	${RM} *.o
 	${RM} 1
