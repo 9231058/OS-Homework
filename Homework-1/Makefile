@@ -1,5 +1,5 @@
 GCC = gcc
-LINUX_LIBRT = -lrt
+LINUX_LIB = -lrt
 RM = rm -f
 TAR = tar
 
@@ -13,7 +13,7 @@ all:
 	${GCC} -o 1 1.o
 2:
 	${GCC} -o 2.o -c 2.c
-	${GCC} -o 2 2.o ${LINUX_LIBRT}
+	${GCC} -o 2 2.o ${LINUX_LIB}
 tar:
 	${RM} *.tar.gz
 	${TAR} cvfz os_assigment${HW_NO}_group20.tgz *.c *.help *.txt Makefile
