@@ -1,18 +1,8 @@
 #include <stdarg.h>
 #include "error_functions.h"
-#include "tlpi_hdr.h"
-#include "ename.c.inc"          /* Defines ename and MAX_ENAME */
 
-#ifdef __GNUC__                 /* Prevent 'gcc -Wall' complaining  */
-__attribute__ ((__noreturn__))  /* if we call this function as last */
-#endif                          /* statement in a non-void function */
 static void terminate(Boolean useExit3){
-	char *s;
-	s = getenv("EF_DUMPCORE");
-
-    	if (s != NULL && *s != '\0')
-        	abort();
-    	else if (useExit3)
+    	if (useExit3)
         	exit(EXIT_FAILURE);
     	else
         	_exit(EXIT_FAILURE);
@@ -42,8 +32,7 @@ static void outputError(Boolean useErr, int err, Boolean flushStdout, const char
 /* Display error message including 'errno' diagnostic, and
    return to caller */
 
-void
-errMsg(const char *format, ...)
+void errMsg(const char *format, ...)
 {
     va_list argList;
     int savedErrno;
@@ -116,9 +105,7 @@ errExitEN(int errnum, const char *format, ...)
 
 /* Print an error message (without an 'errno' diagnostic) */
 
-void
-fatal(const char *format, ...)
-{
+void fatal(const char *format, ...){
     va_list argList;
 
     va_start(argList, format);
