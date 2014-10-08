@@ -10,7 +10,10 @@
 int socket_fd = -1;
 
 int buid_socket_fd(){
-	socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+	if(socket_fd == -1){
+		socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+		sockaddr_in = inet_addr(server_ip_address);
+	}
 }
 
 void connect_socket(int socket_fd);

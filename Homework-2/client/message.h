@@ -1,5 +1,5 @@
 #ifndef MESSAGE_H
-#define MESSAGE
+#define MESSAGE_H
 
 #define MESSAGE_SIZE 255 * 4 + 32
 

@@ -22,6 +22,10 @@ void command_dispatcher(const char* command){
 	}else if(strcmp(verb, "leave") == 0){	
 		sscanf(command, "%s %d", verb, &group_id);
 		leave(group_id);
+	}else if(strcmp(verb, "show") == 0){
+		char show_c;
+		sscanf(command, "%s %c", verb, &show_c);
+		show(show_c);
 	}else if(strcmp(verb, "quit") == 0){
 		quit();
 	}
@@ -45,7 +49,18 @@ void send(int group_id, const char* message_body){
 	printf("%s\n", message.arg);
 }
 
-void leave(int group_id);
+void leave(int group_id){
+
+}
+
+void show(char show_c){
+	if(show_c == 'w'){
+	}
+	if(show_c == 'e'){
+	}
+	if(show_c == 'c'){
+	}
+}
 
 void quit(){
 	exit(0);
