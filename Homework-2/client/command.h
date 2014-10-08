@@ -7,7 +7,7 @@ void join(int group_id);
 
 void send(int group_id, const char* message_body);
 
-void leave(const char* arg);
+void leave(int group_id);
 
 void quit();
 

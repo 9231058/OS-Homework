@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "command.h"
 #include "constants.h"
+#include "message.h"
 
 void command_dispatcher(const char* command){
 	int group_id;
@@ -15,8 +17,11 @@ void command_dispatcher(const char* command){
 		sscanf(command, "%s %d", verb, &group_id);
 		join(group_id);
 	}else if(strcmp(verb, "send") == 0){
-		sscanf(command, "%s %d %s", verb, &group_id, message_body);
+		sscanf(command, "%s %d %[^\n]", verb, &group_id, message_body);
 		send(group_id, message_body);
+	}else if(strcmp(verb, "leave") == 0){	
+		sscanf(command, "%s %d", verb, &group_id);
+		leave(group_id);
 	}else if(strcmp(verb, "quit") == 0){
 		quit();
 	}
@@ -27,10 +32,20 @@ void join(int group_id){
 }
 
 void send(int group_id, const char* message_body){
+	Message message;
+	message.group_id = group_id;
+	strcpy(message.arg, message_body);
+	strcpy(message.verb, "SEND");
+	strcpy(message.client_name, "PARHAM-PC");
 
+	char buffer[MAX_BUFF];
+	serialize_message(buffer, &message);
+	printf("%s", buffer);
+	deserialize_message(buffer, &message);
+	printf("%s\n", message.arg);
 }
 
-void leave(const char* arg);
+void leave(int group_id);
 
 void quit(){
 	exit(0);

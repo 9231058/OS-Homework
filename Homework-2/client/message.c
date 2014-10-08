@@ -7,5 +7,5 @@ int serialize_message(char* buffer, const Message* message){
 }
 
 int deserialize_message(char* buffer, Message* message){
-	return scanf(buffer, "%s:%[^:]:%d:%d", message->verb, message->arg, message->group_id, message->client_name); 
+	return sscanf(buffer, "%s:%[^:]:%d:%s", message->verb, message->arg, &message->group_id, message->client_name); 
 }

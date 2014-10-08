@@ -3,12 +3,12 @@
 
 #include "command.h"
 #include "client_net.h"
+#include "error_functions.h"
 #include "constants.h"
 
 int main(int argc, char* argv[]){
 	if(argc < 4){
-		printf("HELP\n");
-		return;
+		use_die("usage : client server_ip_address server_port_number client_name");
 	}
 	
 	strcpy(client_name, argv[3]);
