@@ -9,8 +9,7 @@ all:
 	${MAKE} client server
 	${MAKE} tar 
 client:
-	${GCC} -o client.o -c client.c
-	${GCC} -o clinet client.o
+	${MAKE} client/
 server:
 	${GCC} -o server.o -c server.c
 	${GCC} -o server server.o ${LINUX_LIB}
