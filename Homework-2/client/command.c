@@ -4,6 +4,7 @@
 #include "command.h"
 #include "constants.h"
 #include "message.h"
+#include "client_net.h"
 
 void command_dispatcher(const char* command){
 	int group_id;
@@ -32,7 +33,10 @@ void command_dispatcher(const char* command){
 }
 
 void join(int group_id){
-
+	Message message;
+	message.group_id = group_id;
+	strcpy(message.arg, " ");
+	strcpy(message.verb, "JOIN");
 }
 
 void send(int group_id, const char* message_body){
@@ -40,16 +44,15 @@ void send(int group_id, const char* message_body){
 	message.group_id = group_id;
 	strcpy(message.arg, message_body);
 	strcpy(message.verb, "SEND");
-	strcpy(message.client_name, "PARHAM-PC");
 
-	char buffer[MAX_BUFF];
-	serialize_message(buffer, &message);
-	printf("%s", buffer);
-	deserialize_message(buffer, &message);
-	printf("%s\n", message.arg);
+	send_messgae(&message);
 }
 
 void leave(int group_id){
+	Message message;
+	message.group_id = group_id;
+	strcpy(message.arg, " ");
+	strcpy(message.verb, "LEAVE");
 
 }
 

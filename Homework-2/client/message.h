@@ -7,7 +7,7 @@ typedef struct{			/* message struct size must be less than 4 * 255 byte */
 	
 	char verb[255];		/* send join leave */
 	
-	char arg[255];		/* if verb has no argument must be '\0' */
+	char arg[255];		/* if verb has no argument must be " " */
 	
 	int group_id;		/* if verb has no group_id must be -1 */
 	
