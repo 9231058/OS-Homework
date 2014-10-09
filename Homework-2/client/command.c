@@ -45,7 +45,7 @@ void send(int group_id, const char* message_body){
 	strcpy(message.arg, message_body);
 	strcpy(message.verb, "SEND");
 
-	send_messgae(&message);
+	send_message(&message);
 }
 
 void leave(int group_id){
