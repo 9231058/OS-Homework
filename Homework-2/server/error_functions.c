@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
 #include <errno.h>
+#include <syslog.h>
 
 #include "error_functions.h"
 
-FILE* log_file = NULL;
+int is_open = 0;
 
 void open_log_file(){
-	if(log_file == NULL){
-		log_file = fopen("server.log.out", "w");
-	
-		fprintf(log_file, "-----THIS IS A SIMPLE LOG FILE-----\n");
+	if(is_open == 0){
+		openlog ("chat-hub-deamon", LOG_PID, LOG_DAEMON);
+		is_open = 1;
 	}
 }
 
@@ -22,23 +21,23 @@ void terminate(){
 
 void log_error(const char* msg){
 	open_log_file();
+	
+	perror(msg);
+	syslog(LOG_DAEMON | LOG_ERR, "%s : %m", msg);
+}
 
-	time_t now_timestamp = time(NULL);
-	struct tm* now_time = localtime(&now_timestamp);
+void log_war(const char* msg){
+	open_log_file();
 
-	fprintf(log_file, "[ERROR][%d / %d / %d][%d : %d : %d] : %s : %s\n", now_time->tm_mon, now_time->tm_mday, now_time->tm_year + 1990, 
-			now_time->tm_hour, now_time->tm_min, now_time->tm_sec,
-			strerror(errno), msg);
+	syslog(LOG_DAEMON | LOG_WARNING, "%s : %m", msg);
 }
 
 void error_die(const char* msg){
 	log_error(msg);
-	perror(msg);
 	terminate();
 }
 
 void use_die(const char* msg){
-	log_error(msg);
 	fprintf(stderr, "%s\n", msg);
 	terminate();
 }

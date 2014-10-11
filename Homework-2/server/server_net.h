@@ -5,6 +5,10 @@
 
 int server_port_number;
 
+int net_init();
+
+int accept_connection();
+
 int send_message(Message* message, int socket_fd);
 
 int recv_message(Message* message, int socket_fd);
