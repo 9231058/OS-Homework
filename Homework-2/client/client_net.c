@@ -48,7 +48,7 @@ int send_message(Message* message){
 	strcpy(message->client_name, client_name); 
 
 	serialize_message(buffer, message);
-	
+
 	return send(socket_fd, buffer, strlen(buffer), 0);
 }
 

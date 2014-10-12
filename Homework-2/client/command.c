@@ -18,7 +18,9 @@ void command_dispatcher(const char* command){
 		sscanf(command, "%s %d", verb, &group_id);
 		join(group_id);
 	}else if(strcmp(verb, "send") == 0){
-		sscanf(command, "%s %d %[^\n]", verb, &group_id, message_body);
+		sscanf(command, "%s %d %[^\n]%*c", verb, &group_id, message_body);
+		printf("%s\n", verb);
+		printf("%d\n", group_id);
 		send(group_id, message_body);
 	}else if(strcmp(verb, "leave") == 0){	
 		sscanf(command, "%s %d", verb, &group_id);
@@ -37,6 +39,8 @@ void join(int group_id){
 	message.group_id = group_id;
 	strcpy(message.arg, " ");
 	strcpy(message.verb, "JOIN");
+
+	send_message(&message);
 }
 
 void send(int group_id, const char* message_body){
@@ -53,7 +57,8 @@ void leave(int group_id){
 	message.group_id = group_id;
 	strcpy(message.arg, " ");
 	strcpy(message.verb, "LEAVE");
-
+	
+	send_message(&message);
 }
 
 void show(char show_c){
