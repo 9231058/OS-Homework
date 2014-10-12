@@ -27,8 +27,6 @@ int main(int argc, char* argv[]){
 		
 		char command[MAX_BUFF];
 		fgets(command, MAX_BUFF, stdin);
-		
-		printf("%s\n", command);
 
 		command_dispatcher(command);
 	}

@@ -10,8 +10,8 @@
 #include "error_functions.h"
 #include "message.h"
 
-int socket_fd = -1;
-int is_connect = 0;
+static int socket_fd = -1;
+static int is_connect = 0;
 
 int build_socket_fd(){
 	if(socket_fd == -1){
@@ -48,6 +48,11 @@ int send_message(Message* message){
 	strcpy(message->client_name, client_name); 
 
 	serialize_message(buffer, message);
+
+	if(is_connect == 0){
+		printf("Message not send because you are not connected. [Message] : %s", buffer);
+		return 0;
+	}
 
 	return send(socket_fd, buffer, strlen(buffer), 0);
 }

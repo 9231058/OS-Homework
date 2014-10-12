@@ -19,8 +19,6 @@ void command_dispatcher(const char* command){
 		join(group_id);
 	}else if(strcmp(verb, "send") == 0){
 		sscanf(command, "%s %d %[^\n]%*c", verb, &group_id, message_body);
-		printf("%s\n", verb);
-		printf("%d\n", group_id);
 		send(group_id, message_body);
 	}else if(strcmp(verb, "leave") == 0){	
 		sscanf(command, "%s %d", verb, &group_id);

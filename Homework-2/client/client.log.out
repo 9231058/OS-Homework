@@ -1,2 +1,2 @@
 -----THIS IS A SIMPLE LOG FILE-----
-[ERROR][9 / 12 / 2104][12 : 49 : 58] : Success : usage : client server_ip_address server_port_number client_name
+[ERROR][9 / 12 / 2104][13 : 11 : 24] : Connection refused : connect()
