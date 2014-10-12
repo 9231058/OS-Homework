@@ -1,4 +1,4 @@
-GCC = gcc
+GCC = gcc -gstabs+
 RM = rm -f
 TAR = tar
 
