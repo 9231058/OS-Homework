@@ -43,8 +43,6 @@ void connect_socket(){
 int send_message(Message* message){
 	connect_socket();
 	
-	fprintf(stderr, "sending start with socket %d\n", socket_fd);
-
 	char buffer[MAX_BUFF];
 	
 	strcpy(message->client_name, client_name); 
@@ -56,13 +54,7 @@ int send_message(Message* message){
 		return 0;
 	}
 
-	fprintf(stderr, "Message send.\n");
-
-	if(send(socket_fd, buffer, strlen(buffer), 0) == -1){
-		perror("send()");	
-	}
-
-	return 1;
+	return send(socket_fd, buffer, strlen(buffer), 0);
 }
 
 int recv_message(Message* message){

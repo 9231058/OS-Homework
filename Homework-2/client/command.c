@@ -42,8 +42,6 @@ void join_command(int group_id){
 }
 
 void send_command(int group_id, const char* message_body){
-	fprintf(stderr, "command send start %d : %s\n", group_id, message_body);
-
 	Message message;
 	message.group_id = group_id;
 	strcpy(message.arg, message_body);
