@@ -28,7 +28,7 @@ int main(int argc, char* argv[]){
 	
 	server_port_number = atoi(argv[1]);
 
-	//skeleton_daemon();
+	skeleton_daemon();
 	
 	int server_socket_fd = net_init();
 	
@@ -69,8 +69,6 @@ int main(int argc, char* argv[]){
 					}
 					continue;
 				}
-
-				printf("%s:%s:%d:%s\n", message.verb, message.arg, message.group_id, message.client_name);
 
 				command_dispatcher(socket_fds[i], &message);
 			}

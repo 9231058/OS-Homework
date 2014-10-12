@@ -53,7 +53,6 @@ void send_command(int group_id, Message* message, int socket_fd){
 		if(groups[i].id == group_id){
 			int j = 0;
 			for(j = 0; j < groups[i].number; j++){
-				printf("%d : %d : %d\n", group_id, i, groups[i].socket_fds[j]);
 				send_message(message, groups[i].socket_fds[j]);
 			}
 		}
