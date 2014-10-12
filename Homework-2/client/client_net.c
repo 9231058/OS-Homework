@@ -33,7 +33,7 @@ void connect_socket(){
 		server_addr.sin_port = htons(server_port_number);
 
 		if(connect(socket_fd, (struct sockaddr*)&server_addr, sizeof(server_addr)) == -1){
-			log_error("connect()");	
+			error_die("connect()");	
 		}else{
 			is_connect = 1;
 		}
@@ -48,11 +48,6 @@ int send_message(Message* message){
 	strcpy(message->client_name, client_name); 
 
 	serialize_message(buffer, message);
-
-	if(is_connect == 0){
-		printf("Message not send because you are not connected. [Message] : %s", buffer);
-		return 0;
-	}
 
 	return send(socket_fd, buffer, strlen(buffer), 0);
 }
