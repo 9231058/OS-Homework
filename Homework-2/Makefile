@@ -6,17 +6,16 @@ TAR = tar
 HW_NO  = 2
 
 all:
-	${MAKE} client server
+	${MAKE} -B client server
 	${MAKE} tar 
 client:
-	${MAKE} client/
+	cd client/; ${MAKE}
 server:
-	${GCC} -o server.o -c server.c
-	${GCC} -o server server.o ${LINUX_LIB}
+	cd server/; ${MAKE}
 tar:
 	${RM} *.tgz
-	${TAR} cvfz os_assigment${HW_NO}_group20.tgz *.c *.help *.txt Makefile
+	${TAR} cvfz os_assigment${HW_NO}_group20.tgz client/ server/ Makefile
 clean:
-	${RM} *.o
-	${RM} client
-	${RM} server
+	cd client/; ${MAKE} clean
+	cd server/; ${MAKE} clean
+	${RM} *.tgz
