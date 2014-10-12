@@ -3,7 +3,7 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-void command_dispatcher();
+void command_dispatcher(int socket_fd, Message* message);
 
 void join_command(int group_id, int socket_fd);
 

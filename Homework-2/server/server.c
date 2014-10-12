@@ -10,6 +10,7 @@
 #include "server_net.h"
 #include "error_functions.h"
 #include "constants.h"
+#include "command.h"
 
 static void skeleton_daemon();
 
@@ -66,9 +67,12 @@ int main(int argc, char* argv[]){
 					if(number > 0){
 						socket_fds[i] = socket_fds[number];
 					}
+					continue;
 				}
 
 				printf("%s:%s:%d:%s\n", message.verb, message.arg, message.group_id, message.client_name);
+
+				command_dispatcher(socket_fds[i], &message);
 			}
 		}
 		 

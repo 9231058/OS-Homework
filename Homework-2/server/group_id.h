@@ -8,11 +8,11 @@ typedef struct{
 
 	int number;	//showing last empty cell and size !! ;-)))
 
-	int sockets_fds[MAX_CONN];
+	int socket_fds[MAX_CONN];
 } GroupId;
 
-void add(int socket_fd, GroupId* group_id);
+void add_node(int socket_fd, GroupId* group_id);
 
-int remove(int socket_fd, GroupId* group_id);
+int remove_node(int socket_fd, GroupId* group_id);
 
 #endif
