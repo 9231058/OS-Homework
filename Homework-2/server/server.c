@@ -117,7 +117,7 @@ static void skeleton_daemon(){
 	/* Close all open file descriptors */
 	printf("IN CASE OF ERROR KILL PID %ld\n", getpid());
 	int x;
-	for (x = sysconf(_SC_OPEN_MAX); x>0; x--){
+	for (x = sysconf(_SC_OPEN_MAX); x > 0; x--){
 		close (x);
 	}
 	
