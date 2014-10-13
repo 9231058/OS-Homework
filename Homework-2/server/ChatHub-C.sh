@@ -1,28 +1,23 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          skeleton
-# Required-Start:    $remote_fs $syslog
-# Required-Stop:     $remote_fs $syslog
+# Provides:          ChatHub-C
+# Required-Start:    
+# Required-Stop:     
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Example initscript
-# Description:       This file should be used to construct scripts to be
-#                    placed in /etc/init.d.
+# Short-Description: Simple chathub
+# Description:       Simple chathub provide as homework in Dr.Payberah operation system class.
 ### END INIT INFO
 
-# Author: Foo Bar <foobar@baz.org>
+# Author: Parham Alvani <parham.alvani@gmail.com>
 #
-# Please remove the "Author" lines above and replace them
-# with your own name if you copy and modify this script.
-
-# Do NOT "set -e"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="Description of the service"
-NAME=daemonexecutablename
+DESC="Simple chathub"
+NAME=ChatHub-C
 DAEMON=/usr/sbin/$NAME
-DAEMON_ARGS="--options args"
+DAEMON_ARGS="--options 1373"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
@@ -94,7 +89,6 @@ do_reload() {
 	# restarting (for example, when it is sent a SIGHUP),
 	# then implement that here.
 	#
-	start-stop-daemon --stop --signal 1 --quiet --pidfile $PIDFILE --name $NAME
 	return 0
 }
 
