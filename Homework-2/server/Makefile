@@ -3,6 +3,7 @@ RM = rm -f
 TAR = tar
 CP = cp
 
+.PHONY: all
 all:
 	${MAKE} server
 server:
@@ -11,7 +12,10 @@ server:
 clean:
 	${RM} *.o
 	${RM} ChatHub-C
+
+.PHONY: clean
 install:
 	${MAKE} server
 	${CP} ChatHub-C.sh /etc/init.d/ChatHub-C
 	${CP} ChatHub-C /usr/sbin/
+
