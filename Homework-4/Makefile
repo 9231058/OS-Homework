@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 GCC = gcc -g
+=======
+GCC = gcc
+>>>>>>> 364451d814b2fe74eee1cae74ad135d626460285
 LINUX_LIB = -lpthread -lrt
 RM = rm -f
 TAR = tar
