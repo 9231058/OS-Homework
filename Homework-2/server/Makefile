@@ -1,14 +1,21 @@
 GCC = gcc
 RM = rm -f
 TAR = tar
+CP = cp
 
-HW_NO  = 2
-
+.PHONY: all
 all:
 	${MAKE} server
 server:
 	${GCC} -c *.c
-	${GCC} -o server *.o
+	${GCC} -o ChatHub-C *.o
 clean:
 	${RM} *.o
-	${RM} server
+	${RM} ChatHub-C
+
+.PHONY: clean
+install:
+	${MAKE} server
+	${CP} ChatHub-C.sh /etc/init.d/ChatHub-C
+	${CP} ChatHub-C /usr/sbin/
+
