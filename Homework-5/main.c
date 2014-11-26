@@ -26,13 +26,14 @@ int main(int argc, char* argv[]){
 	
 	for(int i = 0; i < index; i++){
 		uint8_t mem = mem_read(get_base_addr(addrs[i].page_number), addrs[i].page_offset);
-		printf("%1x\n", mem);
+		printf("Physical Address: %u Value: %1x\n", addrs[i].page_number * 256 + addrs[i].page_offset, mem);
 	}
 }
 
 void pf_handler(uint8_t base){
 	FILE* hard_disk = fopen("assignment5/BACKING_STORE.bin", "r");
 	uint8_t frame[256];
+	fseek(hard_disk, base * 256, SEEK_SET);
 	fread(frame, sizeof(uint8_t), 256, hard_disk);
 	for(int i = 0; i < 256; i++){
 		mem_write(base, i, frame[i]);
