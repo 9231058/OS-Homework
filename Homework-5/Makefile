@@ -1,4 +1,10 @@
-1: logical.o page_table.o
+OBJ=main.o logical.o page_table.o
+
+1: ${OBJ}
+	gcc -o 1 ${OBJ}
+
+main.o: main.c logical.h page_table.h logical.o page_table.o
+	gcc -c main.c
 logical.o: logical.c logical.h
 	gcc -c logical.c
 page_table.o : page_table.c page_table.h
