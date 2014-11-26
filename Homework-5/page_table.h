@@ -5,25 +5,23 @@
 
 // Page table entry structure
 // 16           8 7               0
-// |-----------|-|-----------------|
-// | reserved  |V| Physical  Base  |
-// |           |N|     Address     |
-// |-----------|-|-----------------|
+// |-------------|-----------------|
+// |   reserved  | Physical  Base  |
+// |             |     Address     |
+// |-------------|-----------------|
 //
 // * VN : Valid/Invalid
 //
 
 typedef struct{
 	uint8_t base;
-	uint8_t vn:1;
+	uint8_t flag;
 } __attribute__((packed)) page_table_entry;
 
 // Page fault handler must set for handling page faults.
 //
 //
-
 typedef void (*page_fault_handler)(uint8_t base);
-
 page_fault_handler handler;
 
 void add_page_table_entry(uint8_t index, uint8_t base, uint8_t flag);
