@@ -14,4 +14,8 @@ int main(int argc, char* argv[]){
 		logical_addr_parser(number, &addrs[index]);
 		index++;
 	}
+
+	for(int i = 0; i < 256; i++){
+		add_page_table_entry(i, i, 0x0);
+	}
 }
