@@ -26,7 +26,7 @@ typedef void (*page_fault_handler)(uint8_t base);
 
 page_fault_handler handler;
 
-void add_page_table_entry(uint8_t index, page_table_entry* entry);
+void add_page_table_entry(uint8_t index, uint8_t base, uint8_t flag);
 uint8_t get_bsae_addr(uint8_t index);
 
 #endif
