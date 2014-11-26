@@ -16,5 +16,6 @@ typedef struct{
 } page_table_entry;
 
 void add_page_table_entry(uint8_t index, page_table_entry* entry);
+uint8_t get_bsae_addr(uint8_t index);
 
 #endif
