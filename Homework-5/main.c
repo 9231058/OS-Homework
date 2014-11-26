@@ -12,7 +12,6 @@ int main(int argc, char* argv[]){
 	logical_addr addrs[MAX];
 	while(fscanf(logical_addrs, "%u", &number) > 0){
 		logical_addr_parser(number, &addrs[index]);
-		printf("read base: %1x , offset: %1x\n", addrs[index].page_number , addrs[index].page_offset);
 		index++;
 	}
 }
