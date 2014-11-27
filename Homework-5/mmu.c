@@ -50,7 +50,7 @@ uint8_t l_to_p(const logical_addr* logical, int* tlb_hit){
 }
 
 void access_to_frame(uint8_t frame){
-	frames[frame].access_time = time();
+	frames[frame].access_time = time(NULL);
 }
 
 void init_frames(){

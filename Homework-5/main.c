@@ -27,6 +27,8 @@ int main(int argc, char* argv[]){
 		add_page_table_entry(i, i, 0x0);
 	}
 	set_handler(pf_handler);
+	
+	init_frames();
 
 	for(int i = 0; i < index; i++){
 		int tlb_hit_result;
@@ -42,13 +44,13 @@ int main(int argc, char* argv[]){
 void pf_handler(uint8_t* base, uint8_t index){
 	page_fault_n++;
 	
-	*base = free_page();
+	*base = free_lru(index);
 	
 	FILE* hard_disk = fopen("assignment5/BACKING_STORE.bin", "r");
 	uint8_t frame[256];
 	fseek(hard_disk, index * 256, SEEK_SET);
 	fread(frame, sizeof(uint8_t), 256, hard_disk);
 	for(int i = 0; i < 256; i++){
-		mem_write(base, i, frame[i]);
+		mem_write(*base, i, frame[i]);
 	}
 }

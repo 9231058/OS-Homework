@@ -34,7 +34,7 @@ typedef struct{
 
 uint8_t l_to_p(const logical_addr* l_addr, int* tlb_hit);
 uint8_t free_lru(uint8_t page);
-uint8_t access_to_frame(uint8_t frame);
-void init_framse();
+void access_to_frame(uint8_t frame);
+void init_frames();
 
 #endif
