@@ -25,8 +25,8 @@ int main(int argc, char* argv[]){
 	set_handler(pf_handler);
 	
 	for(int i = 0; i < index; i++){
-		uint8_t mem = mem_read(get_base_addr(addrs[i].page_number), addrs[i].page_offset);
-		printf("Physical Address: %u Value: %1x\n", addrs[i].page_number * 256 + addrs[i].page_offset, mem);
+		int8_t mem = mem_read(get_base_addr(addrs[i].page_number), addrs[i].page_offset);
+		printf("Physical Address: %u Value: %d\n", addrs[i].page_number * 256 + addrs[i].page_offset, mem);
 	}
 }
 

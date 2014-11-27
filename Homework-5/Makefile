@@ -1,4 +1,4 @@
-OBJ=main.o logical.o page_table.o memory.o
+OBJ=main.o logical.o page_table.o memory.o mmu.o
 
 1: ${OBJ}
 	gcc -o 1 ${OBJ}
@@ -11,3 +11,5 @@ page_table.o: page_table.c page_table.h
 	gcc -c page_table.c
 memory.o: memory.c memory.h
 	gcc -c memory.c
+mmu.o: mmu.c mmu.h logical.h logical.o
+	gcc -c mmu.c
