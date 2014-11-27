@@ -7,7 +7,7 @@
 
 #define MAX 1000*1000
 
-void pf_handler(uint8_t base);
+void pf_handler(uint8_t* base, uint8_t index);
 
 static int tlb_hit_n = 0;
 static int page_fault_n = 0;
@@ -39,11 +39,14 @@ int main(int argc, char* argv[]){
 	printf("TLB hit rate : %lf\n", (double) tlb_hit_n / index);
 }
 
-void pf_handler(uint8_t base){
+void pf_handler(uint8_t* base, uint8_t index){
 	page_fault_n++;
+	
+	*base = free_page();
+	
 	FILE* hard_disk = fopen("assignment5/BACKING_STORE.bin", "r");
 	uint8_t frame[256];
-	fseek(hard_disk, base * 256, SEEK_SET);
+	fseek(hard_disk, index * 256, SEEK_SET);
 	fread(frame, sizeof(uint8_t), 256, hard_disk);
 	for(int i = 0; i < 256; i++){
 		mem_write(base, i, frame[i]);

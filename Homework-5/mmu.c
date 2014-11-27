@@ -2,9 +2,12 @@
 #include "logical.h"
 #include "page_table.h"
 #include <stdint.h>
+#include <time.h>
 
 static tlb_entry tlb[16];
 static int last_entry = 0;
+
+static frame_entry frames[128];
 
 void add_tlb_entry(uint8_t page, uint8_t frame){
 	if(last_entry == 16){
@@ -44,4 +47,33 @@ uint8_t l_to_p(const logical_addr* logical, int* tlb_hit){
 		add_tlb_entry(logical->page_number, frame);
 		return frame;
 	}
+}
+
+void access_to_frame(uint8_t frame){
+	frames[frame].access_time = time();
+}
+
+void init_frames(){
+	uint8_t i = 0;
+	for(i = 0; i < 128; i++){
+		frames[i].ref_no = 0;
+	}
+}
+
+uint8_t free_lru(uint8_t page){
+	uint8_t min_index = 0;
+	uint8_t i = 0;
+	for(i = 0; i < 128; i++){
+		if(frames[i].ref_no == 0){
+			frames[i].ref_no = 1;
+			frames[i].page_index = page;
+			return i;
+		}
+		if(frames[min_index].access_time > frames[i].access_time){
+			min_index = i;
+		}
+	}
+	invalid_page_table_entry(frames[min_index].page_index);
+	frames[min_index].page_index = page;
+	return min_index;
 }
