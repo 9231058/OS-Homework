@@ -3,6 +3,8 @@
 #include "page_table.h"
 #include <stdint.h>
 #include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 static tlb_entry tlb[16];
 static int last_entry = 0;
@@ -50,6 +52,10 @@ uint8_t l_to_p(const logical_addr* logical, int* tlb_hit){
 }
 
 void access_to_frame(uint8_t frame){
+	if(frame >= 128){
+		fprintf(stderr, "Memory Exception.\n");
+		exit(1);
+	}
 	frames[frame].access_time = time(NULL);
 }
 
