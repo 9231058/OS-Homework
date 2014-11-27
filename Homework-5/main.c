@@ -1,5 +1,6 @@
-#include "page_table.h"
 #include "logical.h"
+#include "mmu.h"
+#include "page_table.h"
 #include "memory.h"
 #include <stdio.h>
 #include <stdint.h>
@@ -7,6 +8,9 @@
 #define MAX 1000*1000
 
 void pf_handler(uint8_t base);
+
+static int tlb_hit_n = 0;
+static int page_fault_n = 0;
 
 int main(int argc, char* argv[]){
 	FILE* logical_addrs = fopen("assignment5/addresses.txt", "r");
@@ -23,14 +27,20 @@ int main(int argc, char* argv[]){
 		add_page_table_entry(i, i, 0x0);
 	}
 	set_handler(pf_handler);
-	
+
 	for(int i = 0; i < index; i++){
-		int8_t mem = mem_read(get_base_addr(addrs[i].page_number), addrs[i].page_offset);
-		printf("Physical Address: %u Value: %d\n", addrs[i].page_number * 256 + addrs[i].page_offset, mem);
+		int tlb_hit_result;
+		int8_t mem = mem_read(l_to_p(&addrs[i], &tlb_hit_result), addrs[i].page_offset);
+		printf("Virtual Address: %u Physical Address:  Value: %d\n", addrs[i].page_number * 256 + addrs[i].page_offset, mem);
+		tlb_hit_n += tlb_hit_result;	
 	}
+
+	printf("Page-fault-rate : %lf\n", (double) page_fault_n / index);
+	printf("TLB hit rate : %lf\n", (double) tlb_hit_n / index);
 }
 
 void pf_handler(uint8_t base){
+	page_fault_n++;
 	FILE* hard_disk = fopen("assignment5/BACKING_STORE.bin", "r");
 	uint8_t frame[256];
 	fseek(hard_disk, base * 256, SEEK_SET);
