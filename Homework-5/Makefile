@@ -2,6 +2,7 @@ OBJ=main.o logical.o page_table.o memory.o mmu.o
 
 1: ${OBJ}
 	gcc -o 1 ${OBJ}
+	./memory.sh
 
 main.o: main.c logical.h mmu.h page_table.h memory.h logical.o mmu.o page_table.h memory.o
 	gcc -std=c99 -c main.c

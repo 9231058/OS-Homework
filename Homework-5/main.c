@@ -32,8 +32,9 @@ int main(int argc, char* argv[]){
 
 	for(int i = 0; i < index; i++){
 		int tlb_hit_result;
-		int8_t mem = mem_read(l_to_p(&addrs[i], &tlb_hit_result), addrs[i].page_offset);
-		printf("Virtual Address: %u Physical Address:  Value: %d\n", addrs[i].page_number * 256 + addrs[i].page_offset, mem);
+		uint8_t physical_addr;
+		int8_t mem = mem_read((physical_addr = l_to_p(&addrs[i], &tlb_hit_result)), addrs[i].page_offset);
+		printf("Virtual Address: %u Physical Address: %u Value: %d\n", addrs[i].page_number, physical_addr, mem);
 		tlb_hit_n += tlb_hit_result;	
 	}
 

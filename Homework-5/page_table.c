@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include "page_table.h"
+#include <stdint.h>
 
 static page_table_entry table[255];
 static page_fault_handler handler;
