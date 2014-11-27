@@ -91,7 +91,7 @@ uint8_t free_lru(uint8_t page){
 		}
 	}
 	invalid_page_table_entry(frames[min_index].page_index);
-	remove_tlb_entry(page);
+	remove_tlb_entry(frames[min_index].page_index);
 	frames[min_index].page_index = page;
 	return min_index;
 }
