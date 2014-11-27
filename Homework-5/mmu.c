@@ -31,6 +31,17 @@ void add_tlb_entry(uint8_t page, uint8_t frame){
 	last_entry++;
 
 }
+void remove_tlb_entry(uint8_t page){
+	int i;
+	for(i = 0; i < last_entry; i++){
+		if(tlb[i].page_index == page){
+			last_entry--;
+			tlb[i].page_index = tlb[last_entry].page_index;
+			tlb[i].frame_index = tlb[last_entry].frame_index;
+			tlb[i].access = tlb[last_entry].access;
+		}
+	}
+}
 
 uint8_t l_to_p(const logical_addr* logical, int* tlb_hit){
 	short find = 0;
@@ -80,6 +91,7 @@ uint8_t free_lru(uint8_t page){
 		}
 	}
 	invalid_page_table_entry(frames[min_index].page_index);
+	remove_tlb_entry(page);
 	frames[min_index].page_index = page;
 	return min_index;
 }
