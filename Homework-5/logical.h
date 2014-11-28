@@ -1,3 +1,13 @@
+// In The Name Of God
+// ========================================
+// * File Name : logical.h
+// 
+// * Creation Date : 28-11-2014
+//
+// * Last Modified : Fri 28 Nov 2014 08:26:09 AM IRST
+//
+// * Created By : Parham Alvani (parham.alvani@gmail.com)
+// =======================================
 #ifndef LOGICAL_H
 #define LOGICAL_H
 
