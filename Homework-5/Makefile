@@ -14,3 +14,6 @@ memory.o: memory.c memory.h
 	gcc -c memory.c
 mmu.o: mmu.c mmu.h logical.h logical.o
 	gcc -c mmu.c
+.PHONY: clean
+clean:
+	rm 1 ${OBJ}
