@@ -58,7 +58,7 @@ int main(int argc, char* argv[]){
 	if(fork() == 0){
 		writer();
 	}
-
+	
 	int i = 0;
 	for(i = 0; i < 10; i++){
 		if(fork() == 0){
@@ -101,6 +101,7 @@ void reader(){
 	int reader_counter = 0;
 	int value = 0;
 	while(1){
+		sleep(1);
 		if(value == MAX){
 			munmap(buffer_addr, sizeof(int));
 			munmap(reader_counter_addr, sizeof(int));
