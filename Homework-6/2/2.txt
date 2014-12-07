@@ -1,0 +1,4 @@
+1.What system call is used for removing file2.txt? 
+	as you can see in strace output, rm use following command to remove file
+	unlinkat(AT_FDCWD, "file2.txt", 0) 
+**Other question answered in shell script with echo command**
