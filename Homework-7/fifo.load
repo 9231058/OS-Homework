@@ -1,7 +1,7 @@
 #!/bin/sh
 module="fifo"
 device="fifo"
-mode="664"
+mode="666"
 
 # Remove stale nodes and replace them, then give gid and perms
 # Usually the script is shorter, it's scull that has several devices in it.

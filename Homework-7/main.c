@@ -4,7 +4,7 @@
 // 
 // * Creation Date : 08-12-2014
 //
-// * Last Modified : Mon 08 Dec 2014 10:58:58 PM IRST
+// * Last Modified : Tue 09 Dec 2014 10:08:29 AM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
@@ -42,21 +42,28 @@ static int tail;
  * Open and close
  */
  
-int fifo_open(struct inode *inode, struct file *filp) {
+static int fifo_open(struct inode *inode, struct file *filp){
 	printk(KERN_INFO "fifo: device opened\n");
+
+	try_module_get(THIS_MODULE);
 	return 0;          /* success */
+}
+
+static int fifo_release(struct inode *inode, struct file *flip){
+	module_put(THIS_MODULE);
+	return 0;
 }
 
 /*
  * Data management: read and write
  */
-ssize_t fifo_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos) {
+static ssize_t fifo_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos) {
 	ssize_t retval = 0;
 	
 	if(*f_pos != 0)
 		return -EINVAL;
 	if(tail - head < count)
-		return -EINVAL;
+		count = tail - head;
 
 	if (copy_to_user(buf, queue + head, count)){
       		retval = -EFAULT;
@@ -69,25 +76,26 @@ ssize_t fifo_read(struct file *filp, char __user *buf, size_t count, loff_t *f_p
    		return retval;
 }
 
-ssize_t fifo_write(struct file *filp, const char __user *buf, size_t count, loff_t *f_pos){
+static ssize_t fifo_write(struct file *filp, const char __user *buf, size_t count, loff_t *f_pos){
   	ssize_t retval = 0; 
-	if (copy_from_user(queue + head, buf, count)) {
+	
+	printk(KERN_INFO "fifo: start writing ...\n");
+	if (copy_from_user(queue + tail, buf, count)) {
       		retval = -EFAULT;
       		goto out;
    	}
    	tail += count;
-   	retval = count;
-   
-   
+   	retval = count; 
  	out:
   		return retval;
 }
 
-struct file_operations fifo_fops = {
+static struct file_operations fifo_fops = {
    	.owner =    THIS_MODULE,
    	.read =     fifo_read,
    	.write =    fifo_write,
-   	.open =     fifo_open
+   	.open =     fifo_open,
+	.release =  fifo_release
 };
 
 /*

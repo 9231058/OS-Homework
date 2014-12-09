@@ -3,7 +3,7 @@ module="fifo"
 device="fifo"
  
 # invoke rmmod with all arguments we got
-/sbin/rmmod $module $* || exit 1
+/sbin/rmmod $module || exit 1
  
 # Remove stale nodes
  

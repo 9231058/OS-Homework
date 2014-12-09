@@ -27,9 +27,10 @@ extern int fifo_major;     /* main.c */
  */
 
 
-int fifo_open(struct inode *inode, struct file *filp);
-ssize_t fifo_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos);
-ssize_t fifo_write(struct file *filp, const char __user *buf, size_t count, loff_t *f_pos);
+static int fifo_open(struct inode *inode, struct file *filp);
+static int fifo_release(struct inode* inode, struct file *filp);
+static ssize_t fifo_read(struct file *filp, char __user *buf, size_t count, loff_t *f_pos);
+static ssize_t fifo_write(struct file *filp, const char __user *buf, size_t count, loff_t *f_pos);
 
 #endif /* _SCULL_H_ */
 
