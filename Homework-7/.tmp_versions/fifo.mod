@@ -1,2 +1,2 @@
-/home/parham/Documents/Git/OS-Homework/Homework-7/fifo.ko
-/home/parham/Documents/Git/OS-Homework/Homework-7/main.o
+/home/parham/Documents/University/Dr.Payberah/Operating-Systems/Homeworks/Homework-7/fifo.ko
+/home/parham/Documents/University/Dr.Payberah/Operating-Systems/Homeworks/Homework-7/main.o
