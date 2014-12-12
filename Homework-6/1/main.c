@@ -4,7 +4,7 @@
 // 
 // * Creation Date : 13-12-2014
 //
-// * Last Modified : Sat 13 Dec 2014 12:33:53 AM IRST
+// * Last Modified : Sat 13 Dec 2014 02:42:13 AM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // ========================================
@@ -42,5 +42,11 @@ int main(int argc, char* argv[]){
 	printf("SSTF: %d\n", sstf(req, REQ_N));
 
 	set_head(position);
+	printf("SCAN: %d\n", scan(req, REQ_N));
+
+	set_head(position);
 	printf("C-SCAN: %d\n", c_scan(req, REQ_N));
+
+	set_head(position);
+	printf("LOOK: %d\n", look(req, REQ_N));
 }

@@ -4,7 +4,7 @@
 // 
 // * Creation Date : 12-12-2014
 //
-// * Last Modified : Sat 13 Dec 2014 12:21:07 AM IRST
+// * Last Modified : Sat 13 Dec 2014 01:15:48 AM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
@@ -18,4 +18,10 @@ int fcfs(int req[], int n);
 
 int sstf(int req[], int n);
 
+int scan(int req[], int n);
+
 int c_scan(int req[], int n);
+
+int look(int req[], int n);
+
+int c_look(int req[], int n);
