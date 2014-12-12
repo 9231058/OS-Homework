@@ -4,11 +4,12 @@
 // 
 // * Creation Date : 12-12-2014
 //
-// * Last Modified : Sat 13 Dec 2014 01:15:48 AM IRST
+// * Last Modified : Sat 13 Dec 2014 03:05:45 AM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
 #define MAX_CYLINDERS 10
+#define SHOW		// Comment it if you don't want showing feature
 
 void set_head(int position);
 
