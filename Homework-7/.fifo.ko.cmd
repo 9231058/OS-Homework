@@ -1,1 +1,0 @@
-cmd_/home/parham/Documents/Git/OS-Homework/Homework-7/fifo.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/parham/Documents/Git/OS-Homework/Homework-7/fifo.ko /home/parham/Documents/Git/OS-Homework/Homework-7/fifo.o /home/parham/Documents/Git/OS-Homework/Homework-7/fifo.mod.o

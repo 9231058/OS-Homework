@@ -4,7 +4,7 @@
 // 
 // * Creation Date : 08-12-2014
 //
-// * Last Modified : Tue 09 Dec 2014 10:08:29 AM IRST
+// * Last Modified : Wed 10 Dec 2014 02:56:47 AM IRST
 //
 // * Created By : Parham Alvani (parham.alvani@gmail.com)
 // =======================================
@@ -108,16 +108,14 @@ static struct file_operations fifo_fops = {
  * have not been initialized
  */
 void __exit fifo_cleanup_module(void) {
-   	dev_t devno = MKDEV(fifo_major, fifo_minor);
-   
    	/* cleanup_module is never called if registering failed */
-   	unregister_chrdev_region(devno, 1);
-   
+	unregister_chrdev(fifo_major, "fifo"); 
 }
 
 int __init fifo_init_module(void){
 	head = 0;
 	tail = 0;
+
 
    	/*
    	 * Get a range of minor numbers to work with, asking for a dynamic

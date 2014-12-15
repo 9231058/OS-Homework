@@ -1,1 +1,0 @@
-cmd_/home/parham/Documents/Git/OS-Homework/Homework-7/fifo.o := ld -m elf_x86_64   -r -o /home/parham/Documents/Git/OS-Homework/Homework-7/fifo.o /home/parham/Documents/Git/OS-Homework/Homework-7/main.o 
